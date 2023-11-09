@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random possword Generator</title>
+</head>
+<body>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      font-family: 'poppins',sans-serif;
+      box-sizing: border-box;
+    }
+    body{
+      background: #002339;
+      color: #fff;
+    }
+    .container{
+      margin: 12%;
+      width: 90%;
+      max-width: 700px;
+    }
+    .display{
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 30px;
+      background: #fff;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 20px;
+      border-radius: 10px;
+    }
+    .container h1{
+      font-weight: 500px;
+      font-size: 45px;
+    }
+    .container h1 span{
+      color: #019f55;
+      border-bottom: 4px solid#019f55;
+      padding-bottom: 7px;
+    }
+    .display img{
+      cursor: pointer;
+    }
+    .display input{
+      border: 0;
+      outline: 0;
+      font-size: 24px;
+    }
+    .container button img{
+      width: 28px;
+      margin-right: 10px;
+    }
+    .container button{
+      border: 0;
+      outline: 0;
+      background: #019f55;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 26px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <div class="container">
+    <h1>Generate a <br><span>Random Password</span></h1><br><br>
+    <button onclick="createPassword()"><img src="images/lightening.png">generare Password</button>
+    <div class="display">
+      <input type="text" id="password" placeholder="password">
+      <img style="width: 30px;" src="images/copy_icon.jpg" onclick="copyPossword()">
+    </div>
+    
+  </div>
+  <script>
+    const passwordBox = document.getElementById("password");
+    const length = 12;
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const number = "01234566789";
+    const symbol = "~!@#$%^&*()_+|}{[]<>/-=";
+
+    const allchars = uppercase + lowercase + number+symbol;
+
+    function createPassword(){
+      let password = "";
+      password += uppercase[Math.floor(Math.random()*uppercase.length)];
+      password += lowercase[Math.floor(Math.random()*lowercase.length)];
+      password += number[Math.floor(Math.random()*number.length)];
+      password += symbol[Math.floor(Math.random()*symbol.length)];
+      while(length > password.length){
+        password += allchars[Math.floor(Math.random()*allchars.length)];
+      }
+      passwordBox.value = password;
+      
+    }
+
+    function copyPossword(){
+      if(passwordBox.value==="")
+      {
+        alert("click on the generate possword button");
+      }else{
+        passwordBox.select();
+      document.execCommand("copy");
+      }
+      
+    }
+  </script>
+</body>
+</html>
